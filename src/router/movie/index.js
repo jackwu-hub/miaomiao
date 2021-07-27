@@ -4,15 +4,15 @@ export default {
     children: [
         {
             path: 'nowPlaying',
-            component: ()=>import('@/components/NowPlaying'),
+            component: ()=>import('@/views/Movie/NowPlaying'),
         },
         {
             path: 'comingSoon',
-            component: ()=>import('@/components/ComingSoon')
+            component: ()=>import('@/views/Movie/ComingSoon')
         },
         {
             path: 'search',
-            component: ()=>import('@/components/Search')
+            component: ()=>import('@/views/Movie/Search')
         },
         {
             path: '', // 二级路由默认的页面

@@ -2,6 +2,10 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 
+import cinema from './module/cinemaModule'
+import tabbar from './module/tabbarshowModule'
+import city from './module/cityModule'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -42,6 +46,9 @@ export default new Vuex.Store({
       })
     }
   },
-  modules: {
+  modules: { //
+    cinema,
+    tabbar,
+    city
   }
 })
