@@ -15,9 +15,24 @@ const routes = [
   },
   {
     path: '/detail/:id', //动态路由
-    name: 'kerwin',
+    name: 'moviedetail',
     component: ()=>import('@/views/Movie/Detail')      
+  },
+  {
+    path: '/:path',
+    //name: 'city',
+    component: ()=>import('@/views/Cinema/City')
+  },
+  {
+    path: '/cinema/search', //动态路由
+    //name: 'cinema/search',
+    component: ()=>import('@/views/Cinema/Search')
+  },
+  {
+    path: '/mine/log', //动态路由
+    component: ()=>import('@/views/Mine/Log')
   }
+
 ]
 
 const router = new VueRouter({

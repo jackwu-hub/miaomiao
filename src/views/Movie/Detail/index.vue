@@ -21,7 +21,6 @@
 </template>
   
 <script>
-import axios from 'axios'
 import swiper from '@/components/DetailSwiper'
 export default {
   data() {
@@ -35,7 +34,7 @@ export default {
   },
   mounted() {
     this.id=this.$route.params.id
-    axios({
+    this.axios({
       url: `https://m.maizuo.com/gateway?filmId=${this.id}&k=3389488`,
       headers: {
         'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"16266978925309722039156737","bc":"110100"}',

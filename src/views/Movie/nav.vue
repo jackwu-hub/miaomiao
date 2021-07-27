@@ -1,6 +1,6 @@
 <template>
         <ul> <!--声明式路由 二级路由 -->
-            <li><span @click="showCity">定位</span><best-city ref="vuecity" @closeChooseCity="getCity"></best-city><i class="iconfont icon-moreunfold"></i></li>
+            <!-- <li><span @click="showCity">定位</span><best-city ref="vuecity" @closeChooseCity="getCity"></best-city><i class="iconfont icon-moreunfold"></i> -->
             <router-link to="/movie/nowplaying" tag="li" activeClass="myactive">
             正在热映</router-link>
             <router-link to="/movie/comingSoon" tag="li" activeClass="myactive">
@@ -14,13 +14,14 @@
 export default {
     name: 'movieNav',
     methods: {
-    getCity(val) {
-      console.log(val);
-    },
-    showCity() {
-      this.$refs.vuecity.show();
+      //下面2个方法只有在使用城市列表插件时才使用
+      /* getCity(val) {
+        console.log(val);
+      },
+      showCity() {
+        this.$refs.vuecity.show();  */
     }
-  }
+  
 }
     
 </script>
@@ -54,5 +55,6 @@ export default {
             width: 100%;
             height: 40px;
             background-color: white;
+            z-index: 100;
          }
 </style>
