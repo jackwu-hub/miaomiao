@@ -2,13 +2,13 @@
     <div class="cinema">
         <div class="title">
             <div class="top">
-                <div @click="handleChangePage('city')">{{cityName}}</div> <!--这个cityName是个全局变量-->
+                <div @click="handleChangePage('city')">{{cityName}}<i class="iconfont icon-moreunfold" ></i></div> <!--这个cityName是个全局变量-->
                 <div>影院</div>
                 <div><i class="icon iconfont icon-search"  @click="handleChangePage('cinema/search')"></i></div>
             </div>
 
             <div class="select">
-                <div @click="handleClick()" :class="isaddShow?'active':''">{{crtyItem}}</div>
+                <div @click="handleClick()" :class="isaddShow?'active':''">{{crtyItem}}<i class="iconfont icon-moreunfold" ></i></div>
                 <div>APP订票</div>
                 <div>最近去过</div>
             </div>
@@ -59,7 +59,8 @@ export default {
       scrollHeight: '0px'
     }
   },
-  mounted () {
+  mounted () { 
+    console.log("这里只触发一次")  //因为使用了缓存 ，所以只有在第一次进到这个页面触发一次，后面都不会触发，这里不知道为什么这个结论不对
     // disptch 到 vuex中action
     if (this.cinemalist.length === 0) {
       this.$store.dispatch('cinema/getCinema', this.cityId).then(res => { //这个cityId是在city页面决定的，它是个全局变量
@@ -81,6 +82,7 @@ export default {
       if (path === 'city') {
         // 清空共享状态 vuex cinemaList
         this.setCinema([]) //当变换了城市位置时，cinemalist中的数据也要变换，所以先清空。
+        
       }
      this.$router.push(path)
      //this.$router.push({name: path,params: {path: path}}) // 跳转路径

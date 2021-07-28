@@ -17,12 +17,14 @@
 import Vue from 'vue'
 import { mapMutations } from 'vuex'
 import { IndexBar, IndexAnchor, Cell } from 'vant'
+import {messageBox} from '@/components/JS' //调用自定义的弹窗组件
 Vue.use(IndexBar).use(IndexAnchor).use(Cell)
 export default {
   data () {
     return {
       indexlist: [],
-      datalist: []
+      datalist: [],
+      mytext: ''
     }
   },
   mounted () {
@@ -35,7 +37,41 @@ export default {
     }).then(res => {
       // 向zimuarray方法传入获取到的数组
       this.zimuarray(res.data.data.cities)
-    })
+    }),
+     setTimeout(()=>{  //过3秒再弹出
+        this.axios({ //这个是请求定位的
+            url: 'https://m.maizuo.com/gateway?k=2519051',
+            headers: {
+              'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"16266978925309722039156737","bc":"440100"}',
+              'X-Host': 'mall.film-ticket.city.locate'
+            }
+        }).then(res => {
+          // 向zimuarray方法传入获取到的数组
+            var msg=res.data.msg
+            if(msg==='ok'){
+              //console.log(res.data.data.city.name)
+              var name=res.data.data.city.name
+              var id=res.data.data.city.cityId
+              //if(this.$store.state.city.cityId===id){return;} //这个是解决当前定位相同时才还跳出弹窗的问题 ，但是因为它们一个是字符串，一个是数字所以
+              if(this.$store.state.city.cityId==id){return;} //用两个== ，这样类型会自动转换
+              messageBox({   //跳出弹窗
+                  title: '定位',
+                  content: name,
+                  cancel: '取消',
+                  ok: '切换定位',
+                  /* handleCancel(){ 
+                      console.log("1") 
+                  }, */
+                  handleOk(){
+                      // console.log("2")
+                      window.localStorage.setItem('nowNm',name)
+                      window.localStorage.setItem('nowId',id) //保存到本地 
+                      window.location.reload()  //切换城市后页面重新加载
+                  }
+              })
+            }  
+        })
+     },3000)
   },
   methods: {
     zimuarray (citys) {
@@ -65,6 +101,8 @@ export default {
       // 传递name  cityid 到vuex存储
       this.setCityName(item.name) 
       this.setCityId(item.cityId)
+      window.localStorage.setItem('nowNm',item.name); //这个是为了防止刷新后 地名又变为默认设置的地名。可以到状态管理去取出来 
+      window.localStorage.setItem('nowId',item.cityId);  
       this.$router.back() //从哪个页面点进来的就返回到哪个页面
     },
     ...mapMutations('city', ['setCityName', 'setCityId']),//相当于this.$store.commit

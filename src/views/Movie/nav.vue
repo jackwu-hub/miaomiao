@@ -1,5 +1,8 @@
 <template>
         <ul> <!--声明式路由 二级路由 -->
+            
+            <router-link to="/city" tag="li" activeClass="myactive">
+            {{cityName}}<i class="iconfont icon-moreunfold" ></i></router-link>
             <!-- <li><span @click="showCity">定位</span><best-city ref="vuecity" @closeChooseCity="getCity"></best-city><i class="iconfont icon-moreunfold"></i> -->
             <router-link to="/movie/nowplaying" tag="li" activeClass="myactive">
             正在热映</router-link>
@@ -11,17 +14,18 @@
 </template>
 
 <script>
+import { mapState} from 'vuex' // mapState 是vuex提供的切割函数
 export default {
     name: 'movieNav',
-    methods: {
       //下面2个方法只有在使用城市列表插件时才使用
       /* getCity(val) {
         console.log(val);
       },
       showCity() {
         this.$refs.vuecity.show();  */
+    computed: {
+        ...mapState('city', ['cityName'])  //获取全局变量cityName的值
     }
-  
 }
     
 </script>
