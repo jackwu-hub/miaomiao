@@ -15,15 +15,22 @@
 </template>
 
 <script>
+import { mapState} from 'vuex'
 export default {
     name: 'ComingSoon',
     mounted () {
         /* 通过异步来缓存axios请求获取的数据 */
-        if (this.$store.state.comingList.length === 0) { /* 第二步在需要缓存的页面中去判断，这个数组中有没有数据 */
-            this.$store.dispatch('getComingListAction') /* 如果没有缓存就转发到store目录下的index.js中的 Action去异步处理 getComingListAction是方法名 */
-        } else {
+        if (this.comingList.length === 0) { /* 第二步在需要缓存的页面中去判断，这个数组中有没有数据 */
+            //this.$store.dispatch('getComingListAction',this.$store.state.city.cityId).then(res=>{ //这样传参数报了http请求头信息异常，状态码1013，这个错误是说参数有错
+            this.$store.dispatch('comingsoon/getComingListAction',this.cityId).then(res=>{
+            console.log('异步结束，已经存到vuex')
+        })} else { /* 如果没有缓存就转发到store目录下的index.js中的 Action去异步处理 getComingListAction是方法名 */
             console.log('使用缓存数据')
         }
+    },
+    computed: {
+        ...mapState('comingsoon',['comingList']),
+        ...mapState('city', ['cityId']),
     }
 }
 </script>

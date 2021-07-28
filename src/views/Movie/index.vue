@@ -8,6 +8,7 @@
         <Monav :class="isFixed?'fixed':''"/> <!-- 这个fixed是类名，如果满足条件class='fixed',否则为空,这是做吸顶效果的 -->
             <router-view /> <!--二级路由渲染的位置-->
         <TabBar v-show="isTabbarShow" /> <!--使用计算属性 当进入电影详情页时底部导航要隐藏-->
+        
     </div>
 </template>
     
@@ -16,12 +17,14 @@ import Swiper from '@/components/Swiper'
 import TabBar from '@/components/TabBar'
 import Monav from './nav.vue'
 import {mapState} from 'vuex' /* ES6新的导出方式 */
+
 export default {
     name: 'Movie',
     components:{
         Swiper,
         TabBar,
         Monav
+       
     },
     data() {
         return {
