@@ -13,12 +13,12 @@ const module = {
             // 异步处理
         getComingListAction (store,id) { /* 第三步 传入store这个参数 */
             axios({
-                url: `https://m.maizuo.com/gateway?cityId=${id}&pageNum=1&pageSize=10&type=2&k=1264736`,
-                headers: {
-                'X-Client-Info': `{"a":"3000","ch":"1002","v":"5.0.4","e":"16266978925309722039156737","bc","${id}"}`,
+                url: `https://m.maizuo.com/gateway?cityId=${id}&pageNum=1&pageSize=10&type=2&k=4743202`,
+                headers: { //本来这里如果 加上X-Client-Info 这个字段，但是它报了 http请求头信息异常，我就把这个字段 删除了，就可以了
                 'X-Host': 'mall.film-ticket.film.list'
                 }
             }).then(res => {
+                console.log(id)
                 console.log(res.data)
                 store.commit('comingListMutation', res.data.data.films) /* 把请求到的数据提交到Mutation进行监控 */
             })

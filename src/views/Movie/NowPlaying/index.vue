@@ -34,7 +34,7 @@ export default {
          
     },
     mounted() {
-        console.log("触发几次") //这里因为没有使用缓存，所以每次进到这个页面都会触发，如果使用了vuex 缓存，那么它只会触发一次，这里不知道为什么这个结论不对
+        console.log("触发几次") //这里因为没有使用缓存，所以每次进到这个页面都会触发，如果使用了keep-alive缓存，那么它只会触发一次，
         this.axios({
             url: `https://m.maizuo.com/gateway?cityId=${this.cityId}&pageNum=1&pageSize=10&type=1&k=4914599`,
             headers: {
@@ -59,7 +59,7 @@ export default {
             // this.$router.push(`/detail/${id}`) 第一种方法
             this.$router.push({ name: 'moviedetail', params: { id: id } }) //第二种方法
         },
-         //因为我的这个外容器和内容器一样大，所以这里用不了better-scroll-
+         //因为我的这个外容器和内容器一样大，所以这里用不了better-scroll-  如果想用，可以把外容器设置的小点
         /* handleToScroll(pos){ //这个方法是 Scroller中定义的 调用它的滚动事件 
             if(pos.y>100){
                 console.log("正在更新")

@@ -10,8 +10,11 @@ const routes = [
   cinemaRouter,
   mineRouter,
   {
-    path: '*', //一级路由的默认页面
-    redirect: '/movie'
+    path: '/', //一级路由的默认页面
+    name: 'home',
+    redirect: {
+      name: 'nowPlaying',
+    },
   },
   {
     path: '/detail/:id', //动态路由

@@ -1,4 +1,4 @@
-<template>
+<template>  <!--这个页面没有作用，主要是为了学习它是怎么取数据的-->
     <div class="city_body">
         <div class="city_list">
             <Loading v-if="isLoading" />

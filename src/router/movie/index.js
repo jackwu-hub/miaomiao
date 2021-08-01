@@ -3,7 +3,8 @@ export default {
     component: ()=>import('@/views/Movie'),  //使用的是按需加载路由
     children: [
         {
-            path: 'nowPlaying',
+            path: 'nowPlaying',   //在二级路由中要么 /movie/nowPlaying  要么直接 nowPlaying
+            name: 'nowPlaying',
             component: ()=>import('@/views/Movie/NowPlaying'),
         },
         {

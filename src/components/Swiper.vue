@@ -19,7 +19,7 @@ import 'swiper/dist/css/swiper.min.css' // 这是引入
 /* Vue.use(Swiper) // 要先注册，才能new */
 export default {
   mounted () { // 还是子组件内的 mounted先出来 ，然后才是root组件
-  /* eslint-disable no-new */
+  /* eslint-disable no-new */  //这个是如果在eslint模式下，因为使用new 之前要先向Vue注册，所以关闭eslint检查
     new Swiper('.a', {
       // direction: 'vertical'
       loop: true,

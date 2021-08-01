@@ -1,7 +1,7 @@
 <template>
     <div>
-        <Swiper :key="looplist.length" ref="myswiper"> <!--当有多个swiper时，如果不加key,它就不会创建，而是替换（diff算法),所以又是swiper初始化过早的问题 会造成轮播图换不了图 ref是拿到这个轮播图dom结构-->
-            <div class="swiper-slide" v-for="data in looplist" :key="data.bannerId">
+        <Swiper :key="bannerlist.length" ref="myswiper"> <!--当有多个swiper时，如果不加key,它就不会创建，而是替换（diff算法),所以又是swiper初始化过早的问题 会造成轮播图换不了图 ref是拿到这个轮播图dom结构-->
+            <div class="swiper-slide" v-for="data in bannerlist" :key="data.bannerId">
                 <img :src="data.imgUrl" />
             </div>
         </Swiper>
@@ -29,22 +29,23 @@ export default {
     data() {
         return {
             isFixed: false,
-            looplist: []
+            bannerlist: []
         }
     },
     computed: {
-        ...mapState(['isTabbarShow']) /* ...是ES6中展开合并运算符， */
+        ...mapState(['isTabbarShow']), /* ...是ES6中展开合并运算符，取这个全局变量的值*/
+        
     },
     mounted() {
         this.axios({
-            url: 'https://m.maizuo.com/gateway?type=2&cityId=511900&k=3847221',
+            url: `https://m.maizuo.com/gateway?type=2&cityId=${this.$store.state.city.cityId}&k=3847221`,
             headers: {
-                'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.0.4","e":"16266978925309722039156737","bc":"511900"}',
+                'X-Client-Info': `{"a":"3000","ch":"1002","v":"5.0.4","e":"16266978925309722039156737","bc":"${this.$store.state.city.cityId}"}`,
                 'X-Host': 'mall.cfg.common-banner'
             }
             }).then(res => {
             //console.log(res.data)
-            this.looplist = res.data.data
+            this.bannerlist = res.data.data
             })
 
         window.onscroll = this.handleScroll // 这个是处理吸顶效果的 在挂载的时候就开始监听滚动条事件，所以把它放到mounted
