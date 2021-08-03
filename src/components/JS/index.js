@@ -3,18 +3,21 @@ import Vue from 'vue'
 import MessageBox from './MessageBox'
 
 export var messageBox=(function(){ //使用了闭包
-    var defaults={ //自定义弹窗内的数据
-        title: '',
-        content: '',
-        cancel: '',
-        ok: '',
-        handleCancel: null,  //这两个是事件方法
-        handleOk: null
-    }
-
-    var MyComponent = Vue.extend(MessageBox) //把这个消息框扩展到Vue中,只有这样 在下面才能 new 
-
+    
     return function(opts){ //配置参数 (这个参数是从MessageBox目录下的index中取到的)
+
+        var defaults={ //自定义弹窗内的数据
+            title: '',
+            content: '',
+            cancel: '',
+            ok: '',
+            handleCancel: null,  //这两个是事件方法
+            handleOk: null
+        }
+    
+        var MyComponent = Vue.extend(MessageBox) //把这个消息框扩展到Vue中,只有这样 在下面才能 new 
+    
+
         for(var attr in opts){
             defaults[attr]=opts[attr]
         }

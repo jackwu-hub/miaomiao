@@ -2,13 +2,15 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import movieRouter from './movie'
 import cinemaRouter from './cinema'
-import mineRouter from './mine' 
+import mineRouter from './mine'
+import adminRouter from './admin' 
 Vue.use(VueRouter)
 
 const routes = [
   movieRouter,
   cinemaRouter,
   mineRouter,
+  adminRouter,
   {
     path: '/', //一级路由的默认页面
     name: 'home',
@@ -31,16 +33,12 @@ const routes = [
     //name: 'cinema/search',
     component: ()=>import('@/views/Cinema/Search')
   },
-  {
-    path: '/mine/log', //动态路由
-    component: ()=>import('@/views/Mine/Log')
-  }
-
 ]
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL, //这个默认值为 /
+  // base: process.env.BASE_URL, //这个默认值上下文根目录为 /
+  base: 'miaomiao', 
   routes
 })
 

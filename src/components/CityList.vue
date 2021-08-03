@@ -17,7 +17,7 @@ import 'vant/es/cell/index.css'
 import 'vant/es/index-bar/index.css'
 import 'vant/es/index-anchor/index.css'
 import {messageBox} from '@/components/JS' //调用自定义的弹窗组件
-Vue.use(IndexBar).use(IndexAnchor).use(Cell)
+Vue.use(IndexBar).use(IndexAnchor).use(Cell)  //这就相当于 引入了组件，效果=  component: { IndexBar,IndexAnchor,Cell}
 export default {
     data () {
     return {

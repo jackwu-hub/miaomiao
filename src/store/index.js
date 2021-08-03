@@ -5,6 +5,7 @@ import cinema from './module/cinemaModule'
 import tabbar from './module/tabbarshowModule'
 import city from './module/cityModule'
 import comingsoon from './module/comingsoonModule'
+import user from './module/userModule'
 Vue.use(Vuex) //向Vue中注册，只有注册了，后面才能够使用new 来构造
 
 export default new Vuex.Store({
@@ -31,6 +32,7 @@ export default new Vuex.Store({
     cinema,
     tabbar,
     city,
-    comingsoon
+    comingsoon,
+    user,
   }
 })

@@ -11,7 +11,7 @@ Vue.prototype.axios = axios; //使用prototype给 Vue 增加静态方法，只�
 Vue.filter('actorfilter', function (data) { //过滤主演数组，取出name ,这是全局过滤，其他组件如果有相同需求直接调用这个就可以了。
   var newlist = data.map(item => item.name) /* 取data这个对象中的键为name的值，返回是一个数组 */
   //console.log(newlist.join(' ')) /* 把这个数组转换成字符串 */
-  return newlist.join(' ')
+  return newlist.join(' ') //以空格为间隔连接成字符串的形式
 })
 
 Vue.filter('dateFilter', function (data) {
@@ -29,11 +29,11 @@ import Loading from '@/components/Loading'
 Vue.component('Loading',Loading)
   //使用这个有一个条件，要内容器高度比外容器高度高
 
-// 引入 element UI
-/* import ElementUI from 'element-ui'  //这是引入第三方插件为全局组件的方式。
+// 引入 element UI 
+import ElementUI from 'element-ui'  //这是引入第三方插件为全局组件的方式。
 import 'element-ui/lib/theme-chalk/index.css'
 
-Vue.use(ElementUI) */
+Vue.use(ElementUI)
 
 /* Vue.use(BestCity) */
 
