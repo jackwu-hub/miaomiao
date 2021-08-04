@@ -2,8 +2,8 @@
     <div>
         <div>个人中心：</div>
         <div>当前用户：{{ $store.state.user.name }} <a href="javascript:;" @click="handleToLogout">退出</a></div>
-        <div v-if="$store.state.user.isAdmin">用户身份：管理员 <a href="/admin" target="_blank">进入管理后台</a></div>
-        <div v-else>用户身份：普通会员</div>
+        <div v-if="$store.state.user.isAdmin">用户身份：管理员 <a href="/miaomiao/admin" target="_blank">进入管理后台</a></div>
+        <div v-else>用户身份：普通会员</div>                        <!--这里不知道为什么在把它部署到服务器后，如果前面不加上/miaomiao，它跳转不了  在本地没有问题 -->
         <div>
             <input type="file" name="file" value="上传头像" @change="handleToUpload">
             <img class="userHead" :src="$store.state.user.userHead">
