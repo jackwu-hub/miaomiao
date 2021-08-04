@@ -1,9 +1,9 @@
 module.exports={
     publicPath: '/miaomiao',
-    devServer: {
+    devServer: {    //反向代理  
         proxy: {
             '/api2' : {
-                target: 'http://47.98.188.149:3000',
+                target: 'http://localhost:3000',
                 changeOrigin: true
             }
         }
